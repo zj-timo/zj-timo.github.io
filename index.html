@@ -1,1 +1,41 @@
-这是我的主页
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    .p{
+        border: 1px solid red;
+       
+    }
+    .p1{
+        width: 200px;
+        height: 200px;
+        background: red;
+        float: left;
+        
+       
+    }
+    .p2{
+        width: 200px;
+        height: 200px;
+        background: yellow;
+        float:right;
+    }
+    .clearfix::after{
+        content:'';
+        display:block;
+        clear: both;
+        visibility: hidden;
+    }
+</style>
+<body>
+    <div class="p clearfix">
+        <div class="p1"></div>
+        <div class="p2"></div>
+    </div>
+</body>
+</html>
