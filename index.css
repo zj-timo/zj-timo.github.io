@@ -96,6 +96,9 @@ h1 {
   max-height: 100%;
   border-radius: 12px;
 }
+.pp {
+  color: #fff;
+}
 
 .close {
   position: absolute;

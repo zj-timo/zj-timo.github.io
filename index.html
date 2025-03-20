@@ -37,14 +37,17 @@
       </div>
     </div>
 
-    <!-- 图片放大模态框 -->
+    <!-- 图片放大模态框 1212-->
     <div v-if="isModalOpen" class="modal" @click="closeModal">
       <span class="close" @click="closeModal">&times;</span>
       <img :src="selectedImage" class="modal-content" />
     </div>
   </div>
+
+
 </body>
 <script src="./canvas.js"></script>
+
 <script src="./vue.js"></script>
 <script>
   new Vue({
