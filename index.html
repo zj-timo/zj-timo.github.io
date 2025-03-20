@@ -1,43 +1,135 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图片与文字列表展示</title>
+  <link rel="stylesheet" href="./index.css">
 </head>
-<style>
-    .p{
-        border: 1px solid red;
-       
-    }
-    .p1{
-        width: 200px;
-        height: 200px;
-        background: red;
-        float: left;
-        
-       
-    }
-    .p2{
-        width: 200px;
-        height: 200px;
-        background: yellow;
-        float:right;
-    }
-    .clearfix::after{
-        content:'';
-        display:block;
-        clear: both;
-        visibility: hidden;
-    }
-</style>
+
 <body>
-    <div class="p clearfix">
-        <div class="p1"></div>
-        <div class="p2"></div>
-        <div>我是大王</div>
+  <canvas class="bg-canvas" style="width: 100%; height: 100vh;z-index: -1;position: absolute;"></canvas>
+  <div id="app" class="container">
+
+    <h1>机场</h1>
+    <div class="fixedclass">
+      <img style="width: 150px;" src="./wx.png" alt="">
     </div>
-    
+    <h3 style="text-align: center;">
+      <a href="https://www.123684.com/s/3L0iTd-PzQb3" target="_blank" rel="noopener noreferrer">翻墙软件网盘地址</a>
+    </h3>
+    <div class="image-grid">
+      <div v-for="(item, index) in sortedItems" :key="index" class="image-card" :style="cardStyle(index)"
+        @mouseenter="hoverCard(index)" @mouseleave="resetCard">
+        <img :src="item.image" :alt="item.title" class="card-image" @click="openModal(item.image)" />
+        <div class="card-content">
+          <div style="display: flex;align-items: center;">
+            <h2 class="card-title">{{ item.title }}</h2>
+            <img v-if="item.hot" style="width: 50px;margin-bottom: 10px;" src="./推荐.png" alt="">
+          </div>
+          <p style="margin-top: 0;">
+            <a target="_blank" :href="item.address">{{item.address}}</a>
+          </p>
+          <p class="card-description" v-html="item.description"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 图片放大模态框 -->
+    <div v-if="isModalOpen" class="modal" @click="closeModal">
+      <span class="close" @click="closeModal">&times;</span>
+      <img :src="selectedImage" class="modal-content" />
+    </div>
+  </div>
 </body>
+<script src="./canvas.js"></script>
+<script src="./vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data() {
+      return {
+        items: [
+          {
+            image: './jc/极速.png',
+            title: '极速机场',
+            address: 'https://xn--mes358acgm99l.com/#/register?code=i77unY9a',
+            description: '翻墙打开。',
+            hot: false
+          },
+          {
+            image: './jc/1.png',
+            title: '小南瓜',
+            address: 'https://app.lwjyj.com/#/register?code=fSJfSqzK',
+            description: '翻墙打开。',
+            hot: false
+          },
+          {
+            image: './jc/动力港.png',
+            title: '动力港',
+            address: 'https://app.lwjyj.com/#/register?code=fSJfSqzK',
+            description: '直接打开。<br/> 6折一次性流量优惠券码： 40%off<br/> 65折年付优惠券码： 35%off <br/>7折季/半年付优惠券码： 30%off<br/>75折月付优惠券码： 25%off',
+            hot: true
+          },
+          {
+            image: './jc/cross.png',
+            title: 'CrossWall',
+            address: 'https://www.crosswall.org/#/register?code=0H6FLQKa',
+            description: '翻墙打开。',
+            hot: true
+          },
+        ],
+        isModalOpen: false,
+        selectedImage: '',
+        hoverIndex: null,
+        cardColors: [
+          'linear-gradient(135deg, #ff9a9e, #fad0c4)',
+          'linear-gradient(135deg, #a1c4fd, #c2e9fb)',
+          'linear-gradient(135deg, #fbc2eb, #a6c1ee)',
+          'linear-gradient(135deg, #84fab0, #8fd3f4)',
+          'linear-gradient(135deg, #ffecd2, #fcb69f)',
+          'linear-gradient(135deg, #ff9a9e, #fecfef)',
+        ],
+      }
+    },
+    computed: {
+      sortedItems() {
+        // 将 hot 为 true 的项排在前面
+        return [...this.items].sort((a, b) => (b.hot - a.hot));
+      },
+    },
+    created() {
+      let arr = []
+      this.items.sort(() => Math.random() - 0.5)
+    },
+    mounted() {
+      initCanvasEffect()
+    },
+    methods: {
+      openModal(image) {
+        this.selectedImage = image;
+        this.isModalOpen = true;
+      },
+      closeModal() {
+        this.isModalOpen = false;
+      },
+      hoverCard(index) {
+        this.hoverIndex = index;
+      },
+      resetCard() {
+        this.hoverIndex = null;
+      },
+      cardStyle(index) {
+        return {
+          background: this.cardColors[index % this.cardColors.length],
+        };
+      },
+    },
+  })
+
+
+</script>
+
+
 </html>
