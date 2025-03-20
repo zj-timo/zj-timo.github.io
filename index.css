@@ -90,6 +90,8 @@ h1 {
   align-items: center;
   z-index: 1000;
 }
+.pp {
+}
 
 .modal-content {
   max-width: 100%;
