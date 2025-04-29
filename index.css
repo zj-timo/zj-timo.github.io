@@ -235,7 +235,7 @@ body {
 .footer {
   /* background: var(--footer-bg); */
   color: white;
-  padding: 140px 0;
+  padding: 200px 0;
   text-align: center;
   background: url(./nd.jpg) no-repeat;
   background-size: cover;
@@ -246,7 +246,7 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -423,5 +423,220 @@ body {
   .card-btn {
     padding: 8px 16px;
     font-size: 0.9rem;
+  }
+}
+
+/* 顶部导航栏样式 */
+:root {
+  --primary-color: #4e73df;
+  --secondary-color: #2e59d9;
+  --text-color: #2b2d42;
+  --bg-color: #f8f9fc;
+  --card-bg: #ffffff;
+  --navbar-bg: #2b2d42;
+  --navbar-text: #f8f9fa;
+  --dropdown-bg: #3a3c4e;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --transition: all 0.3s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  padding-top: 70px;
+  /* 为固定导航栏留出空间 */
+}
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--navbar-bg);
+  color: var(--navbar-text);
+  padding: 0 20px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+}
+
+.navbar-logo i {
+  color: #4e9af1;
+  font-size: 1.8rem;
+}
+
+/* 导航菜单 */
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  height: 100%;
+}
+
+.navbar-item {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-link {
+  color: var(--navbar-text);
+  text-decoration: none;
+  padding: 0 20px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition);
+  font-size: 0.95rem;
+}
+
+.navbar-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-link i {
+  font-size: 1.1rem;
+}
+
+/* 下拉菜单 */
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--dropdown-bg);
+  border-radius: 0 0 8px 8px;
+  box-shadow: var(--shadow);
+  min-width: 200px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: var(--transition);
+  z-index: 100;
+}
+
+.navbar-item:hover .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-item {
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.dropdown-link {
+  color: var(--navbar-text);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: var(--transition);
+}
+
+.dropdown-link:hover {
+  color: #4e9af1;
+  transform: translateX(5px);
+}
+
+.dropdown-link i {
+  width: 20px;
+  text-align: center;
+}
+
+/* 移动端菜单按钮 */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* 主内容区 */
+.main-content {
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 110px;
+}
+
+/* 响应式设计 */
+@media (max-width: 992px) {
+  .navbar-menu {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background-color: var(--navbar-bg);
+    flex-direction: column;
+    height: auto;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .navbar-menu.active {
+    max-height: 500px;
+  }
+
+  .navbar-item {
+    height: auto;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .navbar-link {
+    padding: 15px 20px;
+  }
+
+  .dropdown {
+    position: static;
+    box-shadow: none;
+    border-radius: 0;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: max-height 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-item:hover .dropdown {
+    max-height: 300px;
+  }
+
+  .dropdown-item {
+    padding-left: 40px;
+  }
+
+  .menu-toggle {
+    display: block;
   }
 }

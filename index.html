@@ -13,8 +13,34 @@
 
 <body>
     <div class="container" id="app">
+        <!-- 顶部导航栏 -->
+        <nav class="navbar">
+            <a href="#" class="navbar-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>Hot VPN</span>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <ul class="navbar-menu" id="navbarMenu">
+                <li class="navbar-item">
+                    <a target="_blank" href="https://www.123684.com/s/3L0iTd-PzQb3" class="navbar-link">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>翻墙软件连接</span>
+                    </a>
+                </li>
+
+
+
+
+
+
+            </ul>
+        </nav>
         <!-- 侧边栏 - 机场VPN风格 -->
-        <aside class="sidebar">
+        <aside style="display: none;" class="sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-logo">
                     <i class="fas fa-shield-alt"></i>
@@ -142,6 +168,50 @@
                     item.style.transform = 'translateX(0)';
                 });
             });
+        });
+    </script>
+    <script>
+        // 移动端菜单切换
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menuToggle');
+            const navbarMenu = document.getElementById('navbarMenu');
+
+            menuToggle.addEventListener('click', () => {
+                navbarMenu.classList.toggle('active');
+
+                // 切换图标
+                const icon = menuToggle.querySelector('i');
+                if (navbarMenu.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+
+            // 点击菜单项后关闭菜单（移动端）
+            if (window.innerWidth <= 992) {
+                document.querySelectorAll('.navbar-link').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navbarMenu.classList.remove('active');
+                        menuToggle.querySelector('i').classList.remove('fa-times');
+                        menuToggle.querySelector('i').classList.add('fa-bars');
+                    });
+                });
+            }
+        });
+
+        // 窗口大小改变时重置菜单状态
+        window.addEventListener('resize', () => {
+            const navbarMenu = document.getElementById('navbarMenu');
+            const menuToggle = document.getElementById('menuToggle');
+
+            if (window.innerWidth > 992) {
+                navbarMenu.classList.remove('active');
+                menuToggle.querySelector('i').classList.remove('fa-times');
+                menuToggle.querySelector('i').classList.add('fa-bars');
+            }
         });
     </script>
 </body>
