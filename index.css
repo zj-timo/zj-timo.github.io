@@ -582,9 +582,9 @@ body {
 /* 主内容区 */
 .main-content {
   padding: 40px;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding-top: 110px;
+  /* padding-top: 110px; */
 }
 
 /* 响应式设计 */
