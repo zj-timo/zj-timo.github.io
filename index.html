@@ -112,9 +112,15 @@
                 </div>
             </div>
 
-            <div class="qrcode">
-                <img src="./wx.png" alt="客户端下载二维码">
-                <div class="qrcode-caption">扫码加入我们</div>
+            <div style="display: flex;">
+                <div class="qrcode" style="margin-right: 10px;">
+                    <img src="./wx.png" alt="客户端下载二维码">
+                    <div class="qrcode-caption">扫码加入我们</div>
+                </div>
+                <div class="qrcode qrcode1">
+                    <img src="./jc/生才.png" alt="大流量电话卡">
+                    <div class="qrcode-caption">生才有道</div>
+                </div>
             </div>
         </div>
     </footer>
@@ -136,6 +142,7 @@
                 counter: false
             });
             lightGallery(document.querySelector('.qrcode'));
+            lightGallery(document.querySelector('.qrcode1'));
 
             // 滚动时触发卡片动画
             const cards = document.querySelectorAll('.card');
