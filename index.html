@@ -1,128 +1,141 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>机场VPN服务</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lightgallery.min.css">
-    <link rel="stylesheet" href="./index.css?v=2.0">
-    <link rel="icon" type="image/png" href="favicon.png">
-</head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lightgallery.min.css"
+    />
+    <link rel="stylesheet" href="./index.css?v=2.0" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+  </head>
 
-<body>
+  <body>
     <div class="container" id="app">
-        <!-- 顶部导航栏 -->
-        <nav class="navbar">
-            <a href="#" class="navbar-logo">
-                <i class="fas fa-shield-alt"></i>
-                <span>Hot VPN</span>
+      <!-- 顶部导航栏 -->
+      <nav class="navbar">
+        <a href="#" class="navbar-logo">
+          <i class="fas fa-shield-alt"></i>
+          <span>Hot VPN</span>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <ul class="navbar-menu" id="navbarMenu">
+          <li class="navbar-item">
+            <a
+              target="_blank"
+              href="https://www.123684.com/s/3L0iTd-PzQb3"
+              class="navbar-link"
+            >
+              <i class="fas fa-link"></i>
+              <span>翻墙软件连接</span>
             </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- 侧边栏 - 机场VPN风格 -->
+      <aside style="display: none" class="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-logo">
+            <i class="fas fa-shield-alt"></i>
+            <span>Hot VPN</span>
+          </div>
+        </div>
 
-            <button class="menu-toggle" id="menuToggle">
-                <i class="fas fa-bars"></i>
-            </button>
-
-            <ul class="navbar-menu" id="navbarMenu">
-                <li class="navbar-item">
-                    <a target="_blank" href="https://www.123684.com/s/3L0iTd-PzQb3" class="navbar-link">
-                        <i class="fas fa-link"></i>
-                        <span>翻墙软件连接</span>
-                    </a>
-                </li>
-
-
-
-
-
-
-            </ul>
-        </nav>
-        <!-- 侧边栏 - 机场VPN风格 -->
-        <aside style="display: none;" class="sidebar">
-            <div class="sidebar-header">
-                <div class="sidebar-logo">
-                    <i class="fas fa-shield-alt"></i>
-                    <span>Hot VPN</span>
-                </div>
-            </div>
-
-            <ul class="sidebar-menu">
-                <li><a target="_blank" href="https://www.123684.com/s/3L0iTd-PzQb3"><i
-                            class="fas fa-tachometer-alt"></i> 翻墙软件连接</a></li>
-                <!-- <li><a href="#"><i class="fas fa-server"></i> 节点列表</a></li>
+        <ul class="sidebar-menu">
+          <li>
+            <a target="_blank" href="https://www.123684.com/s/3L0iTd-PzQb3"
+              ><i class="fas fa-tachometer-alt"></i> 翻墙软件连接</a
+            >
+          </li>
+          <!-- <li><a href="#"><i class="fas fa-server"></i> 节点列表</a></li>
                 <li><a href="#"><i class="fas fa-chart-line"></i> 流量统计</a></li>
                 <li><a href="#"><i class="fas fa-user-shield"></i> 账户安全</a></li>
                 <li><a href="#"><i class="fas fa-cog"></i> 高级设置</a></li> -->
-            </ul>
-        </aside>
+        </ul>
+      </aside>
 
-        <!-- 主内容区 -->
-        <main class="main-content">
-            <header class="page-header">
-                <h1 class="page-title">全球高速节点</h1>
-                <p class="page-subtitle">{{topyl}}</p>
-            </header>
+      <!-- 主内容区 -->
+      <main class="main-content">
+        <header class="page-header">
+          <h1 class="page-title">全球高速节点</h1>
+          <p class="page-subtitle">{{topyl}}</p>
+        </header>
 
-            <div class="cards-container">
-                <!-- 节点卡片1 -->
-                <div v-for="item in sortedItems" class="card">
-                    <article :data-src="item.image">
-                        <img :src="item.image" :alt="item.title" class="card-img">
-                    </article>
-                    <div class="card-body">
-                        <div style="display: flex;align-items: center;margin-bottom: 20px;">
-                            <a target="_blank" class="card-btn" style="margin-right: 10px;" :href="item.address">
-                                {{item.title}}
-                            </a>
-                            <i class="fas fa-fire" style="color: #f40;font-size: 30px;" v-if="item.hot"></i>
-                        </div>
+        <div class="cards-container">
+          <!-- 节点卡片1 -->
+          <div v-for="item in sortedItems" class="card">
+            <article :data-src="item.image">
+              <img :src="item.image" :alt="item.title" class="card-img" />
+            </article>
+            <div class="card-body">
+              <div
+                style="display: flex; align-items: center; margin-bottom: 20px"
+              >
+                <a
+                  target="_blank"
+                  class="card-btn"
+                  style="margin-right: 10px"
+                  :href="item.address"
+                >
+                  {{item.title}}
+                </a>
+                <i
+                  class="fas fa-fire"
+                  style="color: #f40; font-size: 30px"
+                  v-if="item.hot"
+                ></i>
+              </div>
 
-
-                        <p class="card-text" v-html="item.description"></p>
-
-                    </div>
-                </div>
-
-
-
+              <p class="card-text" v-html="item.description"></p>
             </div>
-        </main>
+          </div>
+        </div>
+      </main>
     </div>
 
     <!-- 底部二维码区域 -->
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-info">
-                <!-- <h3 class="footer-title">获取客户端与教程</h3> -->
-                <!-- <p class="footer-text">最终解释权归群主所有</p> -->
-                <div class="social-links">
-                    <!-- <a href="#">
+      <div class="footer-content">
+        <div class="footer-info">
+          <!-- <h3 class="footer-title">获取客户端与教程</h3> -->
+          <!-- <p class="footer-text">最终解释权归群主所有</p> -->
+          <div class="social-links">
+            <!-- <a href="#">
                        
                         <i class="fab fa-telegram"></i></a>
                     <a href="#"><i class="fab fa-discord"></i></a>
                     <a href="#"><i class="fab fa-github"></i></a>
                     <a href="#"><i class="fas fa-envelope"></i></a> -->
-                    <p> 世间万物皆有名字，而只有风知道，奶奶说的。
-                        我曾在银色平原漫步，也在青草之河垂钓，这片土地认识我。
-                        不要伤害任何人，除非他们要夺走你的家。
-                        为初生之土而战！
-                        艾欧尼亚，昂扬不灭。</p>
-                </div>
-            </div>
+            <p>
+              世间万物皆有名字，而只有风知道，奶奶说的。
+              我曾在银色平原漫步，也在青草之河垂钓，这片土地认识我。
+              不要伤害任何人，除非他们要夺走你的家。 为初生之土而战！
+              艾欧尼亚，昂扬不灭。
+            </p>
+          </div>
+        </div>
 
-            <div style="display: flex;">
-                <div class="qrcode" style="margin-right: 10px;">
-                    <img src="./wx.png" alt="客户端下载二维码">
-                    <div class="qrcode-caption">扫码加入我们</div>
-                </div>
-                <!-- <div class="qrcode qrcode1">
+        <div style="display: flex">
+          <div class="qrcode" style="margin-right: 10px">
+            <img src="./wx.png" alt="客户端下载二维码" />
+            <div class="qrcode-caption">扫码加入我们</div>
+          </div>
+          <!-- <div class="qrcode qrcode1">
                     <img src="./jc/生才.png" alt="大流量电话卡">
                     <div class="qrcode-caption">生才有道</div>
                 </div> -->
-            </div>
         </div>
+      </div>
     </footer>
 
     <!-- 图片放大库 -->
@@ -133,183 +146,176 @@
     <!-- <script defer src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.1/plugins/fullscreen/lg-fullscreen.min.js"></script> -->
 
     <script>
-        // 初始化图片放大功能
-        document.addEventListener('DOMContentLoaded', () => {
-            lightGallery(document.querySelector('.cards-container'), {
-                selector: '.card-img',
-                download: false,
-                zoom: true,
-                counter: false
-            });
-            lightGallery(document.querySelector('.qrcode'));
-            lightGallery(document.querySelector('.qrcode1'));
-
-            // 滚动时触发卡片动画
-            const cards = document.querySelectorAll('.card');
-
-            const animateOnScroll = () => {
-                cards.forEach(card => {
-                    const cardTop = card.getBoundingClientRect().top;
-                    const windowHeight = window.innerHeight;
-
-                    if (cardTop < windowHeight - 100 && card.style.animation === '') {
-                        card.style.animation = 'fadeInUp 0.8s forwards';
-                    }
-                });
-            };
-
-            // 初始触发一次
-            animateOnScroll();
-
-            // 滚动时触发
-            window.addEventListener('scroll', animateOnScroll);
-
-            // 侧边栏菜单悬停效果
-            const menuItems = document.querySelectorAll('.sidebar-menu a');
-            menuItems.forEach(item => {
-                item.addEventListener('mouseenter', () => {
-                    item.style.transform = 'translateX(5px)';
-                });
-
-                item.addEventListener('mouseleave', () => {
-                    item.style.transform = 'translateX(0)';
-                });
-            });
+      // 初始化图片放大功能
+      document.addEventListener("DOMContentLoaded", () => {
+        lightGallery(document.querySelector(".cards-container"), {
+          selector: ".card-img",
+          download: false,
+          zoom: true,
+          counter: false,
         });
+        lightGallery(document.querySelector(".qrcode"));
+        lightGallery(document.querySelector(".qrcode1"));
+
+        // 滚动时触发卡片动画
+        const cards = document.querySelectorAll(".card");
+
+        const animateOnScroll = () => {
+          cards.forEach((card) => {
+            const cardTop = card.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+
+            if (cardTop < windowHeight - 100 && card.style.animation === "") {
+              card.style.animation = "fadeInUp 0.8s forwards";
+            }
+          });
+        };
+
+        // 初始触发一次
+        animateOnScroll();
+
+        // 滚动时触发
+        window.addEventListener("scroll", animateOnScroll);
+
+        // 侧边栏菜单悬停效果
+        const menuItems = document.querySelectorAll(".sidebar-menu a");
+        menuItems.forEach((item) => {
+          item.addEventListener("mouseenter", () => {
+            item.style.transform = "translateX(5px)";
+          });
+
+          item.addEventListener("mouseleave", () => {
+            item.style.transform = "translateX(0)";
+          });
+        });
+      });
     </script>
     <script>
-        // 移动端菜单切换
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuToggle = document.getElementById('menuToggle');
-            const navbarMenu = document.getElementById('navbarMenu');
+      // 移动端菜单切换
+      document.addEventListener("DOMContentLoaded", () => {
+        const menuToggle = document.getElementById("menuToggle");
+        const navbarMenu = document.getElementById("navbarMenu");
 
-            menuToggle.addEventListener('click', () => {
-                navbarMenu.classList.toggle('active');
+        menuToggle.addEventListener("click", () => {
+          navbarMenu.classList.toggle("active");
 
-                // 切换图标
-                const icon = menuToggle.querySelector('i');
-                if (navbarMenu.classList.contains('active')) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times');
-                } else {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
+          // 切换图标
+          const icon = menuToggle.querySelector("i");
+          if (navbarMenu.classList.contains("active")) {
+            icon.classList.remove("fa-bars");
+            icon.classList.add("fa-times");
+          } else {
+            icon.classList.remove("fa-times");
+            icon.classList.add("fa-bars");
+          }
+        });
+
+        // 点击菜单项后关闭菜单（移动端）
+        if (window.innerWidth <= 992) {
+          document.querySelectorAll(".navbar-link").forEach((link) => {
+            link.addEventListener("click", () => {
+              navbarMenu.classList.remove("active");
+              menuToggle.querySelector("i").classList.remove("fa-times");
+              menuToggle.querySelector("i").classList.add("fa-bars");
             });
+          });
+        }
+      });
 
-            // 点击菜单项后关闭菜单（移动端）
-            if (window.innerWidth <= 992) {
-                document.querySelectorAll('.navbar-link').forEach(link => {
-                    link.addEventListener('click', () => {
-                        navbarMenu.classList.remove('active');
-                        menuToggle.querySelector('i').classList.remove('fa-times');
-                        menuToggle.querySelector('i').classList.add('fa-bars');
-                    });
-                });
-            }
-        });
+      // 窗口大小改变时重置菜单状态
+      window.addEventListener("resize", () => {
+        const navbarMenu = document.getElementById("navbarMenu");
+        const menuToggle = document.getElementById("menuToggle");
 
-        // 窗口大小改变时重置菜单状态
-        window.addEventListener('resize', () => {
-            const navbarMenu = document.getElementById('navbarMenu');
-            const menuToggle = document.getElementById('menuToggle');
-
-            if (window.innerWidth > 992) {
-                navbarMenu.classList.remove('active');
-                menuToggle.querySelector('i').classList.remove('fa-times');
-                menuToggle.querySelector('i').classList.add('fa-bars');
-            }
-        });
+        if (window.innerWidth > 992) {
+          navbarMenu.classList.remove("active");
+          menuToggle.querySelector("i").classList.remove("fa-times");
+          menuToggle.querySelector("i").classList.add("fa-bars");
+        }
+      });
     </script>
-</body>
-<script src="./vue.js"></script>
-<script>
+  </body>
+  <script src="./vue.js"></script>
+  <script>
     new Vue({
-        el: '#app',
-        data() {
-            return {
-                items: [
-                    {
-                        image: './jc/sm1.png',
-                        title: '三毛机场',
-                        address: 'https://gw-1.xn--ehqx7tcnnope.com/#/register?code=7tlUlEaU',
-                        description: '翻墙打开',
-                        hot: true
-                    },
-                    {
-                        image: './jc/极速.png',
-                        title: '极速机场',
-                        address: 'https://xn--mes358acgm99l.com/#/register?code=i77unY9a',
-                        description: '翻墙打开。',
-                        hot: false
-                    },
-
-                    {
-                        image: './jc/动力港.png',
-                        title: '动力港',
-                        address: 'https://site01.dongligang.me/#/register?code=qRwipoTz',
-                        description: '直接打开。<br/> 6折一次性流量优惠券码： 40%off<br/> 65折年付优惠券码： 35%off <br/>7折季/半年付优惠券码： 30%off<br/>75折月付优惠券码： 25%off',
-                        hot: true
-                    },
-                    // {
-                    //   image: './jc/cross.png',
-                    //   title: 'CrossWall',
-                    //   address: 'https://www.crosswall.org/#/register?code=0H6FLQKa',
-                    //   description: '翻墙打开。',
-                    //   hot: false
-                    // },
-                    {
-                        image: './jc/白嫖.png',
-                        title: '白嫖机场',
-                        address: 'https://yes.xn--mesv7f5toqlp.biz/register?code=bhGy3Pbi',
-                        description: '翻墙打开。',
-                        hot: false
-                    },
-                    // {
-                    //     image: './jc/便宜.png',
-                    //     title: '便宜机场',
-                    //     address: 'https://xn--wtq35pfyd55o.com/login.html#/login?code=7nNHSzS4',
-                    //     description: '翻墙打开。',
-                    //     hot: false
-                    // },
-
-
-                ],
-                jsyl: ['房间里总有一股臭味，找了好久没找到来源，后来才发现是枕头里藏着发霉的梦，和我腐烂的理想。',
-                    '财富是对认知的补偿，而不是对勤劳的奖赏。',
-                    '你本来就是打工的，只是恰好读了几年书。',
-                    '精神出轨和躯体出轨哪个可以被原谅？帽子不分深绿还是浅绿。',
-                    '失败乃成功之母，但更多的失败是不孕不育。',
-                    '为什么打工人都向往新疆、内蒙和西藏？因为牛马往往都向往草原。',
-                    '不要让女人的水从眼里流出来。'
-                ]
-            }
-        },
-        computed: {
-            sortedItems() {
-                // 将 hot 为 true 的项排在前面
-                return [...this.items].sort((a, b) => (b.hot - a.hot));
+      el: "#app",
+      data() {
+        return {
+          items: [
+            {
+              image: "./jc/sm1.png",
+              title: "三毛机场",
+              address:
+                "https://gw-1.xn--ehqx7tcnnope.com/#/register?code=7tlUlEaU",
+              description: "翻墙打开",
+              hot: true,
             },
-            topyl() {
-                return this.jsyl[Math.floor(Math.random() * this.jsyl.length)]
-            }
+            {
+              image: "./jc/极速.png",
+              title: "极速机场",
+              address: "https://xn--mes358acgm99l.com/#/register?code=i77unY9a",
+              description: "翻墙打开。",
+              hot: false,
+            },
+
+            {
+              image: "./jc/动力港.png",
+              title: "动力港",
+              address:
+                "https://xn--tfrza853d44tvst.xyz/#/register?code=qRwipoTz",
+              description:
+                "直接打开。<br/> 6折一次性流量优惠券码： 40%off<br/> 65折年付优惠券码： 35%off <br/>7折季/半年付优惠券码： 30%off<br/>75折月付优惠券码： 25%off",
+              hot: true,
+            },
+            // {
+            //   image: './jc/cross.png',
+            //   title: 'CrossWall',
+            //   address: 'https://www.crosswall.org/#/register?code=0H6FLQKa',
+            //   description: '翻墙打开。',
+            //   hot: false
+            // },
+            {
+              image: "./jc/白嫖.png",
+              title: "白嫖机场",
+              address:
+                "https://yes.xn--mesv7f5toqlp.biz/register?code=bhGy3Pbi",
+              description: "翻墙打开。",
+              hot: false,
+            },
+            // {
+            //     image: './jc/便宜.png',
+            //     title: '便宜机场',
+            //     address: 'https://xn--wtq35pfyd55o.com/login.html#/login?code=7nNHSzS4',
+            //     description: '翻墙打开。',
+            //     hot: false
+            // },
+          ],
+          jsyl: [
+            "房间里总有一股臭味，找了好久没找到来源，后来才发现是枕头里藏着发霉的梦，和我腐烂的理想。",
+            "财富是对认知的补偿，而不是对勤劳的奖赏。",
+            "你本来就是打工的，只是恰好读了几年书。",
+            "精神出轨和躯体出轨哪个可以被原谅？帽子不分深绿还是浅绿。",
+            "失败乃成功之母，但更多的失败是不孕不育。",
+            "为什么打工人都向往新疆、内蒙和西藏？因为牛马往往都向往草原。",
+            "不要让女人的水从眼里流出来。",
+          ],
+        };
+      },
+      computed: {
+        sortedItems() {
+          // 将 hot 为 true 的项排在前面
+          return [...this.items].sort((a, b) => b.hot - a.hot);
         },
-        created() {
-            let arr = []
-            this.items.sort(() => Math.random() - 0.5)
+        topyl() {
+          return this.jsyl[Math.floor(Math.random() * this.jsyl.length)];
         },
-        mounted() {
-
-
-
-
-        },
-        methods: {
-
-        },
-    })
-
-
-</script>
-
+      },
+      created() {
+        let arr = [];
+        this.items.sort(() => Math.random() - 0.5);
+      },
+      mounted() {},
+      methods: {},
+    });
+  </script>
 </html>
